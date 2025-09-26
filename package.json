@@ -1,6 +1,10 @@
 {
   "name": "fhi_schmidt_imapl",
-   "scripts": {
-    "start": "node src/index.js"
+  "scripts": {
+    "start": "node src/index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
