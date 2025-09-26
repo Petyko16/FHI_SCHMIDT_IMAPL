@@ -1,0 +1,6 @@
+{
+  "name": "fhi_schmidt_imapl",
+   "scripts": {
+    "start": "node src/index.js"
+  }
+}
