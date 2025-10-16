@@ -1,10 +1,16 @@
 {
-  "name": "fhi_schmidt_imapl",
+  "name": "fhi-imapl-2025",
+  "version": "1.0.0",
+  "type": "commonjs",
   "scripts": {
-    "start": "node src/index.ts"
+    "build": "tsc",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "start": "node dist/index.js"
   },
   "devDependencies": {
+    "@types/node": "^22.7.5",
+    "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.6.3"
   }
 }
