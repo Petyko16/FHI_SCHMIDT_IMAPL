@@ -1,11 +1,13 @@
 {
-  "name": "fhi-imapl-2025",
+  "name": "fhi-schmidt-imapl",
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --watch src --exec ts-node src/index.ts",
-    "start": "node dist/index.js"
+    "dev:src": "nodemon --watch src --exec ts-node src/index.ts",
+    "dev:cvik2": "nodemon --watch cvik2 --exec ts-node cvik2/index.ts",
+    "start:src": "node dist/src/index.ts",
+    "start:cvik2": "node dist/cvik2/index.ts"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",

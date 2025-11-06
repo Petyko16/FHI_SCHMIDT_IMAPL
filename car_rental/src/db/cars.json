@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2022,
+    "pricePerDay": 45,
+    "isAvailable": false
+  }
+]
