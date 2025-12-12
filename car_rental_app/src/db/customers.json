@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Peter Schmidt",
+    "email": "peter@example.com",
+    "phone": "0900000001"
+  },
+  {
+    "id": 2,
+    "name": "Martin Kovác",
+    "email": "martin@example.com",
+    "phone": "0900000002"
+  },
+  {
+    "id": 3,
+    "name": "Ján Novák",
+    "email": "jan@example.com",
+    "phone": "0900000003"
+  },
+  {
+    "id": 4,
+    "name": "Tomáš Kováč",
+    "email": "tomas@example.com",
+    "phone": "0900000004"
+  },
+  {
+    "id": 5,
+    "name": "Adam Szabó",
+    "email": "adam@example.com",
+    "phone": "0900000005"
+  },
+  {
+    "id": 6,
+    "name": "Marek Urban",
+    "email": "marek@example.com",
+    "phone": "0900000006"
+  },
+  {
+    "id": 7,
+    "name": "Richard Polák",
+    "email": "richard@example.com",
+    "phone": "0900000007"
+  },
+  {
+    "id": 8,
+    "name": "Andrej Klinec",
+    "email": "andrej@example.com",
+    "phone": "0900000008"
+  },
+  {
+    "id": 9,
+    "name": "Karol Herák",
+    "email": "karol@example.com",
+    "phone": "0900000009"
+  },
+  {
+    "id": 10,
+    "name": "Lukáš Vlček",
+    "email": "lukas@example.com",
+    "phone": "0900000010"
+  },
+  {
+    "id": 11,
+    "name": "Péter Schmidt",
+    "email": "schpeti2003@gmail.com",
+    "phone": "0944031462"
+  }
+]

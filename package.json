@@ -1,18 +1,37 @@
 {
-  "name": "fhi-schmidt-imapl",
+  "name": "car_rental_app",
   "version": "1.0.0",
-  "type": "commonjs",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "dev:src": "nodemon --watch src --exec ts-node src/index.ts",
-    "dev:cvik2": "nodemon --watch cvik2 --exec ts-node cvik2/index.ts",
-    "start:src": "node dist/src/index.ts",
-    "start:cvik2": "node dist/cvik2/index.ts"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon --watch src -e ts --exec ts-node src/index.ts"
+  },
+
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.22.1",
+    "express-rate-limit": "^6.11.2",
+    "helmet": "^7.2.0"
   },
   "devDependencies": {
-    "@types/node": "^22.7.5",
-    "nodemon": "^3.1.4",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/helmet": "^0.0.48",
+    "@types/node": "^20.19.26",
+    "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
-  }
+    "typescript": "^5.9.3"
+  },
+  "description": "---",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Petyko16/FHI_SCHMIDT_IMAPL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Petyko16/FHI_SCHMIDT_IMAPL/issues"
+  },
+  "homepage": "https://github.com/Petyko16/FHI_SCHMIDT_IMAPL#readme"
 }

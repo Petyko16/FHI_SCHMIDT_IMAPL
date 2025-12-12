@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rentals – Car Rental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">🚗 Car Rental</a>
+        <div>
+            <a href="/cars.html" class="nav-link d-inline text-white">Cars</a>
+            <a href="/customers.html" class="nav-link d-inline text-white">Customers</a>
+            <a href="/rentals.html" class="nav-link d-inline text-primary fw-bold">Rentals</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1 class="mb-4 fw-bold">Rental List</h1>
+
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addRentalModal">
+        ➕ New Rental
+    </button>
+
+    <table class="table table-striped shadow-sm">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Car</th>
+            <th>Customer</th>
+            <th>Days</th>
+        </tr>
+        </thead>
+        <tbody id="rentalsTableBody"></tbody>
+    </table>
+
+</div>
+
+<!-- RENTAL MODAL -->
+<div class="modal fade" id="addRentalModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Rental</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="rentForm">
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Car</label>
+                        <select id="rcar" class="form-control" required></select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Customer</label>
+                        <select id="rcustomer" class="form-control" required></select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Days</label>
+                        <input id="rdays" type="number" class="form-control" required>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" onclick="submitRental()">Create Rental</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    async function loadRentals() {
+        const res = await fetch("/rentals");
+        const rentals = await res.json();
+
+        const tbody = document.getElementById("rentalsTableBody");
+        tbody.innerHTML = "";
+
+        rentals.forEach(r => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+      <td>${r.id}</td>
+      <td>${r.carId}</td>
+      <td>${r.customerId}</td>
+      <td>${r.days}</td>
+    `;
+            tbody.appendChild(row);
+        });
+    }
+
+    async function loadDropdowns() {
+        // load available cars
+        const carRes = await fetch("/cars");
+        const cars = await carRes.json();
+        const carSel = document.getElementById("rcar");
+        carSel.innerHTML = "";
+
+        cars
+            .filter(c => c.isAvailable)
+            .forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c.id;
+                opt.textContent = `${c.brand} ${c.model} (${c.year})`;
+                carSel.appendChild(opt);
+            });
+
+        // load customers
+        const custRes = await fetch("/customers");
+        const custs = await custRes.json();
+        const custSel = document.getElementById("rcustomer");
+        custSel.innerHTML = "";
+
+        custs.forEach(c => {
+            const opt = document.createElement("option");
+            opt.value = c.id;
+            opt.textContent = `${c.name} (${c.email})`;
+            custSel.appendChild(opt);
+        });
+    }
+
+    async function submitRental() {
+        const carId = Number(document.getElementById("rcar").value);
+        const customerId = Number(document.getElementById("rcustomer").value);
+        const days = Number(document.getElementById("rdays").value);
+
+        const rental = {
+            id: Date.now(),
+            carId,
+            customerId,
+            days
+        };
+
+        const res = await fetch("/rentals", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(rental)
+        });
+
+        if (res.ok) {
+            document.getElementById("rentForm").reset();
+            loadRentals();
+            loadDropdowns();
+            bootstrap.Modal.getInstance(document.getElementById("addRentalModal")).hide();
+        } else {
+            alert("Car not available or error.");
+        }
+    }
+
+    document.getElementById("addRentalModal").addEventListener("show.bs.modal", loadDropdowns);
+
+    loadRentals();
+</script>
+
+</body>
+</html>

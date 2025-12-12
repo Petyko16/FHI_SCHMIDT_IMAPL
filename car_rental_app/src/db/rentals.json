@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "carId": 11,
+    "customerId": 1,
+    "startDate": "12.12.2025",
+    "endDate": "14.12.2025",
+    "totalDays": 2,
+    "totalPrice": 60,
+    "status": "Aktív"
+  }
+]
